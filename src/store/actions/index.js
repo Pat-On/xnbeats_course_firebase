@@ -7,8 +7,7 @@ export const registerUser = (userData) => ({
   payload: api.registerUser(userData),
 });
 
-export const loginUser = () => {
-  return {
-    value: true,
-  };
-};
+export const loginUser = (userData) => ({
+  type: AUTH_USER,
+  payload: api.loginUser(userData),
+});

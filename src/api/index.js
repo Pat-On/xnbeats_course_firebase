@@ -33,8 +33,20 @@ export const registerUser = async ({ email, password, name, lastname }) => {
   }
 };
 
-export const loginUser = () => {
-  return {
-    value: true,
-  };
-};
+// because we are using redux promise redux  know by default how to handle promises
+export const loginUser = ({ email, password }) =>
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((response) => {
+      return usersCollection
+        .doc(response.user.uid)
+        .get()
+        .then((snapshot) => {
+          return { isAuth: true, user: snapshot.data() };
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+      return { error: error.message };
+    });
