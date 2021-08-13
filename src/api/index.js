@@ -3,6 +3,7 @@ import "firebase/auth";
 
 import { usersCollection } from "../utils/fbase";
 
+// async await
 export const registerUser = async ({ email, password, name, lastname }) => {
   try {
     // add to authentication list and await if it is done and add to db
@@ -33,6 +34,7 @@ export const registerUser = async ({ email, password, name, lastname }) => {
   }
 };
 
+// then
 // because we are using redux promise redux  know by default how to handle promises
 export const loginUser = ({ email, password }) =>
   firebase
@@ -50,3 +52,25 @@ export const loginUser = ({ email, password }) =>
       console.log(error);
       return { error: error.message };
     });
+
+// promise
+export const autoSignIn = () => {
+  return new Promise((resolve, reject) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        usersCollection
+          .doc(user.uid)
+          .get()
+          .then((snapshot) => {
+            resolve({ isAuth: true, user: snapshot.data() });
+          });
+      } else {
+        resolve({ isAuth: false, user: null });
+      }
+    });
+  });
+};
+
+export const logoutUser = () => {
+  firebase.auth().signOut();
+};
