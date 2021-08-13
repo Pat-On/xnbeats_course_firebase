@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
+import ToastsComponent from "./utils/toasts";
 import { connect } from "react-redux";
 import { autoSignIn, logoutUser } from "./store/actions";
+import AuthHoc from "./components/hoc/authHoc";
 
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -9,13 +11,10 @@ import Footer from "./components/footer";
 import Home from "./components/home";
 import Login from "./components/login";
 import Contact from "./components/contact";
-import Dashboard from "./components/dashboard/index";
-import Reviews from "./components/dashboard/reviews/index";
-import Profile from "./components/dashboard/profile/index";
+import Dashboard from "./components/dashboard";
+import Reviews from "./components/dashboard/reviews";
+import Profile from "./components/dashboard/profile";
 
-import AuthHoc from "./components/hoc/authHoc";
-
-import ToastComponent from "./utils/toasts";
 class Routes extends Component {
   componentDidMount() {
     this.props.dispatch(autoSignIn());
@@ -26,7 +25,7 @@ class Routes extends Component {
   app = (auth) => (
     <>
       <BrowserRouter>
-        <Header auth={auth} logout={this.handleLogout} />
+        <Header auth={auth} logout={this.handleLogout} å />
         <Switch>
           <Route path="/dashboard/reviews" component={AuthHoc(Reviews, true)} />
           <Route path="/dashboard/profile" component={AuthHoc(Profile)} />
@@ -36,13 +35,13 @@ class Routes extends Component {
           <Route path="/" component={Home} />
         </Switch>
         <Footer />
-        <ToastComponent />
+        <ToastsComponent />
       </BrowserRouter>
     </>
   );
+
   render() {
     const { auth } = this.props;
-
     return auth.checkingAuth ? this.app(auth) : "...loading";
   }
 }

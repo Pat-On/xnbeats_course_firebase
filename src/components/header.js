@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const { isAuth } = props.auth;
-
   return (
     <>
       <header>

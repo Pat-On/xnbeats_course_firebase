@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { registerUser, loginUser } from "../../store/actions";
-
-// import { connect } from "react-redux";
 import prevent from "../hoc/prevent";
 
 import { toast } from "react-toastify";
@@ -141,8 +139,3 @@ class Login extends Component {
 }
 
 export default prevent(Login);
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-// });
-
-// export default connect(mapStateToProps)(Login);
