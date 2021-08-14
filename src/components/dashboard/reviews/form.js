@@ -62,7 +62,7 @@ class ReviewForm extends Component {
   };
 
   render() {
-    const state = this.state;
+    const state = this.state; // ref
 
     return (
       <Formik

@@ -12,7 +12,7 @@ import Home from "./components/home";
 import Login from "./components/login";
 import Contact from "./components/contact";
 import Dashboard from "./components/dashboard";
-import Reviews from "./components/dashboard/reviews";
+import ReviewsMain from "./components/dashboard/reviews";
 import Profile from "./components/dashboard/profile";
 import ReviewAddEdit from "./components/dashboard/reviews/add_edit";
 
@@ -32,7 +32,10 @@ class Routes extends Component {
             path="/dashboard/reviews/add"
             component={AuthHoc(ReviewAddEdit, true)}
           />
-          <Route path="/dashboard/reviews" component={AuthHoc(Reviews, true)} />
+          <Route
+            path="/dashboard/reviews"
+            component={AuthHoc(ReviewsMain, true)}
+          />
           <Route path="/dashboard/profile" component={AuthHoc(Profile)} />
           <Route path="/dashboard" component={AuthHoc(Dashboard)} />
           <Route path="/login" component={Login} />
