@@ -42,10 +42,11 @@ const LoginModal = (props) => {
             className="form-control mb-3"
             name="email"
             placeholder="Email"
-            // ref={register({
-            //     required: true,
-            //     pattern:  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, // eslint-disable-line
-            // })}
+            ref={register({
+              required: true,
+              pattern:
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, // eslint-disable-line
+            })}
           />
           {errors.email && (
             <span className="error">Please check your email</span>

@@ -50,8 +50,8 @@ const Profile = (props) => {
               className="form-control"
               name="name"
               defaultValue={auth.user.name}
-              // ref={register({required: true})}
-              {...register({ required: true })}
+              ref={register({ required: true })}
+              // {...register({ required: true })}
             />
             {errors.name && (
               <span className="error">This field is required</span>
@@ -65,8 +65,8 @@ const Profile = (props) => {
               className="form-control"
               name="lastname"
               defaultValue={auth.user.lastname}
-              // ref={register({required: true})}
-              {...register({ required: true })}
+              ref={register({ required: true })}
+              // {...register({ required: true })}
             />
             {errors.lastname && (
               <span className="error">This field is required</span>
@@ -81,15 +81,16 @@ const Profile = (props) => {
             className="form-control"
             name="email"
             defaultValue={auth.user.email}
-            // ref={register({
-            //     required: true,
-            //     pattern:  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, // eslint-disable-line
-            // })}
-            {...register({
+            ref={register({
               required: true,
               pattern:
                 /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, // eslint-disable-line
             })}
+            // {...register({
+            //   required: true,
+            //   pattern:
+            //     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, // eslint-disable-line
+            // })}
           />
           {errors.email && (
             <span className="error">Please check your email</span>
@@ -103,8 +104,8 @@ const Profile = (props) => {
             className="form-control"
             name="address"
             defaultValue={auth.user.address}
-            // ref={register}
-            {...register}
+            ref={register}
+            // {...register}
           />
         </div>
 
@@ -115,8 +116,8 @@ const Profile = (props) => {
               className="custom-select d-block w-100"
               name="gen"
               defaultValue={auth.user.gen}
-              // ref={register}
-              {...register("test", { required: true })}
+              ref={register}
+              // {...register("test", { required: true })}
             >
               <option value="" defaultValue>
                 Choose...
@@ -133,8 +134,8 @@ const Profile = (props) => {
               className="custom-select d-block w-100"
               name="daw"
               defaultValue={auth.user.daw}
-              // ref={register}
-              {...register}
+              ref={register}
+              // {...register}
             >
               <option value="" defaultValue>
                 Choose...
@@ -152,8 +153,8 @@ const Profile = (props) => {
               className="form-control"
               name="age"
               defaultValue={auth.user.age}
-              // ref={register}
-              {...register}
+              ref={register}
+              // {...register}
             />
           </div>
         </div>
