@@ -14,6 +14,7 @@ import Contact from "./components/contact";
 import Dashboard from "./components/dashboard";
 import Reviews from "./components/dashboard/reviews";
 import Profile from "./components/dashboard/profile";
+import ReviewAddEdit from "./components/dashboard/reviews/add_edit";
 
 class Routes extends Component {
   componentDidMount() {
@@ -27,6 +28,10 @@ class Routes extends Component {
       <BrowserRouter>
         <Header auth={auth} logout={this.handleLogout} å />
         <Switch>
+          <Route
+            path="/dashboard/reviews/add"
+            component={AuthHoc(ReviewAddEdit, true)}
+          />
           <Route path="/dashboard/reviews" component={AuthHoc(Reviews, true)} />
           <Route path="/dashboard/profile" component={AuthHoc(Profile)} />
           <Route path="/dashboard" component={AuthHoc(Dashboard)} />

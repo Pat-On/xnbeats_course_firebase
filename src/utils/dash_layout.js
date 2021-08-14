@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
 
 const DashLayout = (props) => {
@@ -23,6 +23,26 @@ const DashLayout = (props) => {
                 </Link>
               </li>
             </ul>
+
+            {user.role === 2 ? (
+              <>
+                <hr />
+                <ul className="nav flex-column">
+                  <li className="nav-item">
+                    <Link className="nav-link active" to="/dashboard/reviews">
+                      Reviews
+                    </Link>
+                  </li>
+                </ul>
+                <ul className="nav flex-column">
+                  <li className="nav-item">
+                    <Link className="nav-link active" to="/dashboard/messages">
+                      Messages
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            ) : null}
           </div>
         </nav>
 
