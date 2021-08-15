@@ -4,7 +4,7 @@ import DashLayout from "../../utils/dash_layout";
 const Dashboard = (props) => {
   return (
     <DashLayout auth={props.auth} title="Dashboard">
-      dashboard
+      Dashboard Content
     </DashLayout>
   );
 };

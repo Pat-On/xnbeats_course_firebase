@@ -17,7 +17,7 @@ import Profile from "./components/dashboard/profile";
 import ReviewAddEdit from "./components/dashboard/reviews/add_edit";
 
 import Review from "./components/review";
-
+import Messages from "./components/dashboard/messages";
 class Routes extends Component {
   componentDidMount() {
     this.props.dispatch(autoSignIn());
@@ -41,6 +41,10 @@ class Routes extends Component {
           <Route
             path="/dashboard/reviews"
             component={AuthHoc(ReviewsMain, true)}
+          />
+          <Route
+            path="/dashboard/messages"
+            component={AuthHoc(Messages, true)}
           />
           <Route path="/dashboard/profile" component={AuthHoc(Profile)} />
           <Route path="/dashboard" component={AuthHoc(Dashboard)} />
