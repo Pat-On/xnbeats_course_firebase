@@ -1,7 +1,14 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
-import { usersCollection, reviewsCollection } from "../utils/fbase";
+//was working without it because was already initialize
+import "firebase/storage";
+
+import {
+  usersCollection,
+  reviewsCollection,
+  messagesCollection,
+} from "../utils/fbase";
 
 const serverTimestamp = firebase.firestore.FieldValue.serverTimestamp;
 
@@ -151,4 +158,61 @@ export const loadMoreReviews = (limit, reviews) => {
     console.log("no more posts");
     return { posts, lastVisible };
   }
+};
+
+export const editReview = (data, id) =>
+  reviewsCollection
+    .doc(id)
+    .update(data)
+    .then(() => {
+      return getReviewById(id);
+    });
+
+export const getReviewById = async (id) => {
+  try {
+    const snapshot = await reviewsCollection.doc(id).get();
+    const data = snapshot.data();
+
+    const url = await firebase
+      .storage()
+      .ref(`reviews/${data.img}`)
+      .getDownloadURL();
+    return { ...data, downloadUrl: url };
+  } catch (error) {
+    return null;
+  }
+};
+
+export const fetchPosts = (limit = 3, where = null) => {
+  return new Promise((resolve, reject) => {
+    let query = reviewsCollection.where("public", "==", 1);
+
+    if (where) {
+      query = query.where(where[0], where[1], where[2]);
+    } else {
+      query = query.orderBy("createdAt");
+    }
+
+    query
+      .limit(limit)
+      .get()
+      .then((snapshot) => {
+        const post = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        resolve(post);
+      });
+  });
+};
+
+export const sendContact = (data) => {
+  return messagesCollection
+    .add({
+      ...data,
+      createdAt: serverTimestamp(),
+    })
+    .then((docRef) => {
+      return docRef.id;
+    });
 };

@@ -16,6 +16,8 @@ import ReviewsMain from "./components/dashboard/reviews";
 import Profile from "./components/dashboard/profile";
 import ReviewAddEdit from "./components/dashboard/reviews/add_edit";
 
+import Review from "./components/review";
+
 class Routes extends Component {
   componentDidMount() {
     this.props.dispatch(autoSignIn());
@@ -29,6 +31,10 @@ class Routes extends Component {
         <Header auth={auth} logout={this.handleLogout} å />
         <Switch>
           <Route
+            path="/dashboard/reviews/edit/:id"
+            component={AuthHoc(ReviewAddEdit, true)}
+          />
+          <Route
             path="/dashboard/reviews/add"
             component={AuthHoc(ReviewAddEdit, true)}
           />
@@ -38,6 +44,7 @@ class Routes extends Component {
           />
           <Route path="/dashboard/profile" component={AuthHoc(Profile)} />
           <Route path="/dashboard" component={AuthHoc(Dashboard)} />
+          <Route path="/reviews/:id" component={Review} />
           <Route path="/login" component={Login} />
           <Route path="/contact" component={Contact} />
           <Route path="/" component={Home} />

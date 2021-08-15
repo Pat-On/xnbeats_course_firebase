@@ -4,6 +4,9 @@ import {
   CLEAR_REVIEW,
   ADD_REVIEW,
   GET_REVIEWS,
+  GET_REVIEW_BY_ID,
+  FETCH_POSTS,
+  SEND_CONTACT,
 } from "../types";
 
 import * as api from "../../api";
@@ -53,4 +56,26 @@ export const getReviews = (limit) => ({
 export const loadMoreReviews = (limit, reviews) => ({
   type: GET_REVIEWS,
   payload: api.loadMoreReviews(limit, reviews),
+});
+
+export const getReviewById = (id) => ({
+  type: GET_REVIEW_BY_ID,
+  payload: api.getReviewById(id),
+});
+
+export const editReview = (data, id) => ({
+  type: GET_REVIEW_BY_ID,
+  payload: api.editReview(data, id),
+});
+
+export const fetchPosts = (id, cond) => ({
+  type: FETCH_POSTS,
+  payload: api.fetchPosts(id, cond),
+});
+
+//======= contact
+
+export const sendContact = (data) => ({
+  type: SEND_CONTACT,
+  payload: api.sendContact(data),
 });
